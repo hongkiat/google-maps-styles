@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+Google Maps with Custom Styles - Hongkiat.com
+</title>
+
+<!--  jquery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../_nav/js/jquery.js"><\/script>')</script>
+
+<!-- demo scripts -->
+<link rel="stylesheet" href="css/style.css">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+window.onload = function () {
+	var styles = [
+	{
+		featureType: 'water', // set the water color
+		elementType: 'geometry.fill', // apply the color only to the fill
+		stylers: [
+			{ color: '#adc9b8' }
+		]
+	},{
+		featureType: 'landscape.natural', // set the natural landscape
+		elementType: 'all',
+		stylers: [
+			{ hue: '#809f80' },
+			{ lightness: -35 }
+		]
+	}
+	,{
+		featureType: 'poi', // set the point of interest
+		elementType: 'geometry',
+		stylers: [
+			{ hue: '#f9e0b7' },
+			{ lightness: 30 }
+		]
+	},{
+		featureType: 'road', // set the road
+		elementType: 'geometry',
+		stylers: [
+			{ hue: '#d5c18c' },
+			{ lightness: 14 }
+		]
+	},{
+		featureType: 'road.local', // set the local road
+		elementType: 'all',
+		stylers: [
+			{ hue: '#ffd7a6' },
+			{ saturation: 100 },
+			{ lightness: -12 }
+		]
+	}
+];
+
+var options = {
+	mapTypeControlOptions: {
+		mapTypeIds: ['Styled']
+	},
+	center: new google.maps.LatLng(-7.245217594087794, 112.74455556869509),
+	zoom: 16,
+	disableDefaultUI: true,	
+	mapTypeId: 'Styled'
+};
+var div = document.getElementById('surabaya');
+var map = new google.maps.Map(div, options);
+var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+map.mapTypes.set('Styled', styledMapType);
+}
+</script>
+
+<!-- nav script -->
+<script src="../_nav/js/nav.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<!-- nav meta -->
+<div class="demo-meta">
+  <h1 class="demo-title">Google Maps with Custom Styles</h1>
+  <p class="demo-desc">This demo shows how to style Google Maps using the API provided</p>
+</div>
+
+<!-- demo content -->
+<div class="demo-wrapper">
+	<div id="surabaya"></div>
+</div>
+</body>
+</html>
